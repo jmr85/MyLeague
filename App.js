@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View , StyleSheet} from 'react-native';
-import {List, ListItem } from "react-native-elements";
+import {ListItem } from "react-native-elements";
 // List es el componente padre, y adentro de List van a ir los ListItems
 const equipos = [
   {
@@ -51,30 +51,21 @@ export default class App extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <List>
+      <View>      
           {
             equipos.map(equipo => 
               (
-                <ListItem 
-                  roundAvatar
-                  avatar={{ uri: equipo.logo}}
+                <ListItem                  
+                  leftAvatar={{ source:{ uri: equipo.logo}}}
                   key={equipo.id}
                   title={equipo.nombre}  
+                  subtitle={String(equipo.estado)}
+                  bottomDivider
                 />
               )
             )
           }
-        </List> 
       </View>  
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
