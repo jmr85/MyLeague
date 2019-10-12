@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { View , StyleSheet} from 'react-native';
-import {ListItem } from "react-native-elements";
-// List es el componente padre, y adentro de List van a ir los ListItems
+import { View } from 'react-native';
+
+import {Teams} from './components/teams';
+
 const equipos = [
   {
     id: "1",
@@ -45,27 +46,19 @@ const equipos = [
 ];
 
 export default class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {};
   }
   render() {
     return (
-      <View>      
-          {
-            equipos.map(equipo => 
-              (
-                <ListItem                  
-                  leftAvatar={{ source:{ uri: equipo.logo}}}
-                  key={equipo.id}
-                  title={equipo.nombre}  
-                  subtitle={String(equipo.estado)}
-                  bottomDivider
-                />
-              )
-            )
+      <View>   
+          
+          {          
+           
           }
-      </View>  
+          <Teams equipos={equipos}/>
+       </View>        
     );
   }
 }
