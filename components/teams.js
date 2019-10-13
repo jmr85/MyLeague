@@ -11,7 +11,7 @@ export class Teams extends Component{
                     key={equipo.id}
                     title={equipo.nombre}  
                     subtitle={String(equipo.estado)}
-                    
+                    onPress={ () => this.props.onSelectTeam() }
                   />
                 )
               )

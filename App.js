@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Modal, View } from 'react-native';
-
 import {Teams} from './components/teams';
+import {Team} from './components/team';
 
 const equipos = [
   {
@@ -49,14 +49,25 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      teamVisible: true
+      teamVisible: false,
+      selectedTeam: {}
     };
   }
+
+  toggleTeam(){
+      this.setState({teamVisible: !this.state.teamVisible
+    });
+  }
+
   render() {
     return (
       <View>   
-          <Teams equipos={equipos}/>
-          <Modal animationType="slide" visible={this.state.teamVisible}/>
+          <Teams equipos={equipos} onSelectTeam={()=> this.toggleTeam()}/>
+          <Team
+            visible={this.state.teamVisible}
+            equipo={this.state.selectedTeam}
+            onToggleTeam={() => this.toggleTeam()}
+          />
        </View>        
     );
   }
