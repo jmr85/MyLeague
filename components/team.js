@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import { Modal, Text, View } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Card, Button, ListItem } from "react-native-elements";
 
 export class Team extends Component {
+  getTotalPlayers(players){
+    let total = 0;
+    if(players !== undefined){
+        total = players.length;
+    }
+    return total;
+  }  
   render() {
     return (
       <Modal animationType="slide" visible={this.props.visible}>
@@ -13,7 +20,7 @@ export class Team extends Component {
               uri: this.props.equipo.logo
             }}
           >
-            <Text>Jugadores: 0</Text>
+            <Text>Jugadores: {this.getTotalPlayers(this.props.equipo.jugadores)}</Text>       
             <Text>Estado: {String(this.props.equipo.estado)}</Text>
 
             <Button

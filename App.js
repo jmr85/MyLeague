@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Vibration } from 'react-native';
+import { View } from 'react-native';
 import {Teams} from './components/teams';
 import {Team} from './components/team';
 
@@ -55,7 +55,6 @@ export default class App extends Component {
   }
 
   toggleTeam(){
-      Vibration.vibrate([1000,2000,3000]);
       this.setState({
         teamVisible: !this.state.teamVisible
     });
