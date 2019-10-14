@@ -87,6 +87,16 @@ export default class App extends Component {
     this.setState({selectedTeam: equipo
     });
   }
+  
+  saveData() {
+    NetInfo.isConnected.fetch().then(isConnected => {
+      if (isConnected) {
+        Alert.alert("Datos enviados");
+      } else {
+        Alert.alert("Verifica tu conexión");
+      }
+    });
+  }
 
   render() {
     return (
@@ -99,11 +109,18 @@ export default class App extends Component {
             onToggleTeam={() => this.toggleTeam()}
           />
           <Button
-            style={{ marginTop: 20 }}
+            buttonStyle={{ marginTop: 20 }}
             icon={{ name: "ios-wifi", type: "ionicon" }}
             backgroundColor="#4CAF50"
             title="Mostrar información de red"
             onPress={() => this.displayNetworkInfo()}
+          />
+          <Button
+            buttonStyle={{ marginTop: 20 }}
+            icon={{ name: "ios-send", type: "ionicon" }}
+            backgroundColor="#17A2B8"
+            title="Enviar datos"
+            onPress={() => this.saveData()}
           />
        </View>        
     );
