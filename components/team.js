@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Text, View } from "react-native";
-import { Card, Button, ListItem } from "react-native-elements";
+import { Card, Button } from "react-native-elements";
 
 export class Team extends Component {
   getTotalPlayers(players){
@@ -24,6 +24,7 @@ export class Team extends Component {
             <Text>Estado: {String(this.props.equipo.estado)}</Text>
 
             <Button
+              icon={{ name: "ios-football", type: "ionicon" }}
               backgroundColor="#03A9F4"
               title="Cerrar vista"
               onPress={() => this.props.onToggleTeam()}
