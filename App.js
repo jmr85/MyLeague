@@ -68,7 +68,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <View>   
+      <View style={{marginTop:22}}>   
           <Teams equipos={equipos} 
           onSelectTeam={equipo=> this.displayTeam(equipo)}/>
           <Team
