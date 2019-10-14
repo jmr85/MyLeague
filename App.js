@@ -51,18 +51,30 @@ export default class App extends Component {
     super(props);
     this.state = {
       teamVisible: false,
-      selectedTeam: {}
+      selectedTeam: {},
+      offline: true
     };
   }
 
   componentDidMount(){
-    NetInfo.addEventListener("connectionChange", connectionInfo => {
-      if(connectionInfo.type == "none" || connectionInfo.type == "unknown"){
-        Alert.alert("Dispositivo sin conexion a Internet")
+    NetInfo.isConnected.addEventListener("connectionChange", isConnected => {
+      this.setState({
+        offline: !isConnected
+      });
+
+      if (isConnected) {
+        Alert.alert("Conectado a Internet");
       }else{
-        Alert.alert("Conectado a Internet via " + connectionInfo.type)
+        Alert.alert("Dispositivo sin conexión a Internet");
       }
-    });
+    }); 
+      // NetInfo.addEventListener("connectionChange", connectionInfo => {
+      //   if(connectionInfo.type == "none" || connectionInfo.type == "unknown"){
+      //     Alert.alert("Dispositivo sin conexion a Internet")
+      //   }else{
+      //     Alert.alert("Conectado a Internet via " + connectionInfo.type)
+      //   }
+      // });
   }
 
   displayNetworkInfo(){
@@ -121,6 +133,7 @@ export default class App extends Component {
             backgroundColor="#17A2B8"
             title="Enviar datos"
             onPress={() => this.saveData()}
+            disabled={this.state.offline}
           />
        </View>        
     );
