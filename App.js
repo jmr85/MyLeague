@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Alert,NetInfo,View } from 'react-native';
+import {Button} from 'react-native-elements';
 import {Teams} from './components/teams';
 import {Team} from './components/team';
 
@@ -64,6 +65,17 @@ export default class App extends Component {
     });
   }
 
+  displayNetworkInfo(){
+    NetInfo.getConnectionInfo().then(connectionInfo =>{
+      Alert.alert(
+        "Tipo de conexion " + 
+        connectionInfo.type + 
+        ", EffectiveConnectionType: " +
+        connectionInfo.effectiveType
+      );
+    });
+  }
+  //connectionInfo.effectiveType Esta propiedad me permite saber si estoy conectado a 2G, 3G, 4G.
   toggleTeam(){
       this.setState({
         teamVisible: !this.state.teamVisible
@@ -85,6 +97,13 @@ export default class App extends Component {
             visible={this.state.teamVisible}
             equipo={this.state.selectedTeam}
             onToggleTeam={() => this.toggleTeam()}
+          />
+          <Button
+            style={{ marginTop: 20 }}
+            icon={{ name: "ios-wifi", type: "ionicon" }}
+            backgroundColor="#4CAF50"
+            title="Mostrar información de red"
+            onPress={() => this.displayNetworkInfo()}
           />
        </View>        
     );
