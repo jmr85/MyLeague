@@ -125,8 +125,10 @@ export default class App extends Component {
   render() {
     return (
       <View style={{marginTop:22}}>   
-           equipos={this.state.equipos}
-          onSelectTeam={equipo=> this.displayTeam(equipo)}/>
+          <Teams
+            equipos={this.state.equipos}
+            onSelectTeam={equipo=> this.displayTeam(equipo)}
+          />
           <Team
             visible={this.state.teamVisible}
             equipo={this.state.selectedTeam}
